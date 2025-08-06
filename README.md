@@ -1,52 +1,119 @@
 # idea-luck
 
-![Build](https://github.com/yihuaxiang/idea-luck/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties) and [pluginName](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
-- [ ] Configure the [CODECOV_TOKEN](https://docs.codecov.com/docs/quick-start) secret for automated test coverage reports on PRs
+[![Build](https://github.com/yihuaxiang/idea-luck/workflows/Build/badge.svg)](https://github.com/yihuaxiang/idea-luck/actions)
+[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+**idea-luck** 是一个简单而有趣的 IntelliJ IDEA 插件，为您提供随机数生成功能。
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+## ✨ 功能特性
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
-<!-- Plugin description end -->
+- 🎲 **随机数生成**: 在 IDE 工具窗口中生成 1-100 的随机数
+- 🖱️ **一键刷新**: 点击按钮即可生成新的随机数
+- 🎯 **简单易用**: 无需复杂配置，开箱即用
+- 🎨 **界面友好**: 集成在 IDE 工具窗口中，操作便捷
 
-## Installation
+## 🚀 安装方式
 
-- Using the IDE built-in plugin system:
-  
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "idea-luck"</kbd> >
-  <kbd>Install</kbd>
-  
-- Using JetBrains Marketplace:
+### 方式一：通过 IDE 内置插件系统安装
 
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
+1. 打开 IntelliJ IDEA
+2. 进入 `Settings/Preferences` → `Plugins` → `Marketplace`
+3. 搜索 "idea-luck"
+4. 点击 `Install` 安装
 
-  You can also download the [latest release](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID/versions) from JetBrains Marketplace and install it manually using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
+### 方式二：手动安装
 
-- Manually:
+1. 下载 [最新版本](https://github.com/yihuaxiang/idea-luck/releases/latest)
+2. 进入 `Settings/Preferences` → `Plugins` → `⚙️` → `Install plugin from disk...`
+3. 选择下载的插件文件进行安装
 
-  Download the [latest release](https://github.com/yihuaxiang/idea-luck/releases/latest) and install it manually using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
+## 📖 使用说明
 
+1. **打开工具窗口**: 安装插件后，在 IDE 底部或侧边栏找到 "Idea Luck" 工具窗口
+2. **生成随机数**: 点击 "Shuffle" 按钮即可生成一个新的随机数
+3. **查看结果**: 随机数会显示在工具窗口中
+
+## 🛠️ 技术栈
+
+- **开发语言**: Kotlin
+- **目标平台**: IntelliJ Platform 2024.3.6+
+- **最低支持版本**: IntelliJ IDEA 2024.3 (Build 243)
+- **构建工具**: Gradle
+
+## 🏗️ 项目结构
+
+```
+idea-luck/
+├── src/main/kotlin/
+│   └── com/github/yihuaxiang/idealuck/
+│       ├── MyBundle.kt                    # 国际化资源管理
+│       ├── services/
+│       │   └── MyProjectService.kt       # 随机数生成服务
+│       ├── startup/
+│       │   └── MyProjectActivity.kt      # 启动活动
+│       └── toolWindow/
+│           └── MyToolWindowFactory.kt    # 工具窗口工厂
+└── src/main/resources/
+    ├── messages/                         # 国际化消息
+    └── META-INF/                        # 插件配置
+```
+
+## 🔧 开发环境
+
+### 环境要求
+
+- JDK 21+
+- IntelliJ IDEA 2024.3+
+- Gradle 9.0+
+
+### 本地开发
+
+1. 克隆项目
+   ```bash
+   git clone https://github.com/yihuaxiang/idea-luck.git
+   cd idea-luck
+   ```
+
+2. 运行插件
+   ```bash
+   ./gradlew runIde
+   ```
+
+3. 构建插件
+   ```bash
+   ./gradlew buildPlugin
+   ```
+
+## 📝 更新日志
+
+### v0.0.1
+- ✨ 初始版本发布
+- 🎲 实现随机数生成功能
+- 🖱️ 添加工具窗口界面
+- 🔧 集成 IntelliJ Platform 插件框架
+
+## 🤝 贡献指南
+
+欢迎提交 Issue 和 Pull Request！
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 打开 Pull Request
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+
+## 🙏 致谢
+
+- 基于 [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template) 构建
+- 感谢 JetBrains 提供的优秀开发平台
 
 ---
-Plugin based on the [IntelliJ Platform Plugin Template][template].
 
-[template]: https://github.com/JetBrains/intellij-platform-plugin-template
-[docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation
+⭐ 如果这个插件对您有帮助，请给个 Star 支持一下！
+<!-- Plugin description end -->
