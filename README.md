@@ -1,11 +1,11 @@
-# idea-luck
+# Random Number Generator
 
 [![Build](https://github.com/yihuaxiang/idea-luck/workflows/Build/badge.svg)](https://github.com/yihuaxiang/idea-luck/actions)
 [![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 <!-- Plugin description -->
-**idea-luck** 是一个简单而有趣的 IntelliJ IDEA 插件，为您提供随机数生成功能。
+Random Number Generator is a simple and fun plugin for IntelliJ Platform IDEs that provides random number generation functionality. Generate random numbers from 1 to 100 with just a click in a convenient tool window.
 
 ## ✨ 功能特性
 
@@ -20,7 +20,7 @@
 
 1. 打开 IntelliJ IDEA
 2. 进入 `Settings/Preferences` → `Plugins` → `Marketplace`
-3. 搜索 "idea-luck"
+3. 搜索 "Random Number Generator"
 4. 点击 `Install` 安装
 
 ### 方式二：手动安装
@@ -31,7 +31,7 @@
 
 ## 📖 使用说明
 
-1. **打开工具窗口**: 安装插件后，在 IDE 底部或侧边栏找到 "Idea Luck" 工具窗口
+1. **打开工具窗口**: 安装插件后，在 IDE 底部或侧边栏找到 "Random Generator" 工具窗口
 2. **生成随机数**: 点击 "Shuffle" 按钮即可生成一个新的随机数
 3. **查看结果**: 随机数会显示在工具窗口中
 
