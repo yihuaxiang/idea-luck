@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an IntelliJ Platform plugin called "Random Number Generator" that provides random number generation functionality (1-100) through a tool window. Built using Kotlin and the IntelliJ Platform Plugin Template.
+This is an IntelliJ Platform plugin called "dev-agent" that embeds the dev-agent web interface (https://dev-agent.alibaba-inc.com/) directly into the IDE through a tool window. Built using Kotlin and the IntelliJ Platform Plugin Template.
 
 **Key Details:**
 - Plugin ID: `com.github.yihuaxiang.idealuck`
@@ -57,21 +57,23 @@ Tests are in `src/test/kotlin/` and use `BasePlatformTestCase` from the IntelliJ
 
 ### Plugin Registration (plugin.xml)
 The plugin is configured in `src/main/resources/META-INF/plugin.xml`:
-- **Tool Window**: Registered via `MyToolWindowFactory`, displays on the right side as "Random Generator"
-- **Startup Activity**: `MyProjectActivity` runs on project startup (currently just logs)
+- **Tool Window**: Registered via `MyToolWindowFactory`, displays on the right side with ID "DevAgent"
+- **Icon**: Uses custom icon `/d.png` from resources
+- **Startup Activity**: `MyProjectActivity` runs on project startup
 - **Resource Bundle**: Internationalization via `messages.MyBundle`
 
 ### Core Components
 
 **Service Layer (`services/MyProjectService.kt`)**
 - Project-level service (`@Service(Service.Level.PROJECT)`)
-- Contains the random number generation logic: `getRandomNumber() = (1..100).random()`
+- Currently minimal - can be extended for plugin-specific business logic
 - Accessed via IntelliJ's service system: `project.service<MyProjectService>()`
 
 **UI Layer (`toolWindow/MyToolWindowFactory.kt`)**
 - Implements `ToolWindowFactory` to create the tool window content
-- `MyToolWindow` inner class builds Swing UI using IntelliJ Platform components (`JBPanel`, `JBLabel`, `JButton`)
-- Button click triggers service call to generate new random number and update label
+- `MyToolWindow` inner class builds UI using `JBCefBrowser` to embed web content
+- Embeds https://dev-agent.alibaba-inc.com/ using IntelliJ's JCEF (Java Chromium Embedded Framework)
+- Uses `BorderLayout` with browser component in center for full window coverage
 
 **Internationalization (`MyBundle.kt`)**
 - Wraps `DynamicBundle` to load messages from `messages/MyBundle.properties`
@@ -86,9 +88,10 @@ The plugin is configured in `src/main/resources/META-INF/plugin.xml`:
 ### Key Patterns
 
 1. **Service Retrieval**: Use `project.service<MyProjectService>()` to get the project-scoped service instance
-2. **UI Components**: Prefer IntelliJ Platform UI components (`JBPanel`, `JBLabel`) over standard Swing for better IDE integration
-3. **Logging**: Use `thisLogger()` from `com.intellij.openapi.diagnostic` for component-specific logging
-4. **Messages**: All user-facing strings go through `MyBundle.message()` for i18n support
+2. **Embedded Web Content**: Use `JBCefBrowser` from `com.intellij.ui.jcef` to embed web pages in tool windows
+3. **Tool Window Icons**: Reference icon files from resources using absolute paths (e.g., `/d.png`)
+4. **Logging**: Use `thisLogger()` from `com.intellij.openapi.diagnostic` for component-specific logging
+5. **Messages**: All user-facing strings go through `MyBundle.message()` for i18n support
 
 ## Testing Strategy
 
@@ -101,7 +104,7 @@ Example test pattern:
 ```kotlin
 fun testProjectService() {
     val projectService = project.service<MyProjectService>()
-    assertNotSame(projectService.getRandomNumber(), projectService.getRandomNumber())
+    assertNotNull(projectService)
 }
 ```
 
@@ -123,6 +126,7 @@ The project includes workflows in `.github/workflows/`:
 ## Important File Locations
 
 - Plugin descriptor: `src/main/resources/META-INF/plugin.xml`
+- Tool window icon: `src/main/resources/d.png`
 - Message bundles: `src/main/resources/messages/MyBundle.properties`
 - Source code: `src/main/kotlin/com/github/yihuaxiang/idealuck/`
 - Tests: `src/test/kotlin/com/github/yihuaxiang/idealuck/`
